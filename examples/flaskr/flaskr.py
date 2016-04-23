@@ -14,6 +14,11 @@ import os
 from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
+#newly added import from here through flask tutorial
+from contextlib import contextmanager
+from flask import appcontext_pushed
+from flask import json, jsonify
+import flask
 
 
 # create our little application :)
@@ -108,3 +113,38 @@ def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
     return redirect(url_for('show_entries'))
+
+#newly added code from here through flask tutorial.
+'''
+def get_user():
+    user = getattr(g, 'user', None)
+    if user is None:
+        user = fetch_current_user_from_database()
+        g.user = user
+    return user
+
+@contextmanager
+def user_set(app, user):
+    def handler(sender, **kwargs):
+        g.user = user
+    with appcontext_pushed.connected_to(handler, app):
+        yield
+
+@app.route('/users/me')
+def users_me():
+    return jsonify(username=g.user.name)
+
+with user_set(app, my_user):
+    with app.test_client() as c:
+        resp = c.get('/users/me')
+        data = json.loads(resp.data)
+        self.assert_equal(data['username'], my_user.username)
+
+with app.test_client() as c:
+    rv = c.get('/')
+    assert flask.session['foo'] == 42
+
+with app.test_client() as c:
+    with c.session_transaction() as sess:
+        sess['a_key'] = 'a value'
+'''

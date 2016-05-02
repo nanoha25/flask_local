@@ -1,20 +1,20 @@
 # -*- coding: utf-8 -*-
 """
-    flask.exthook
+    flaskr.exthook
     ~~~~~~~~~~~~~
 
     Redirect imports for extensions.  This module basically makes it possible
     for us to transition from flaskext.foo to flask_foo without having to
     force all extensions to upgrade at the same time.
 
-    When a user does ``from flask.ext.foo import bar`` it will attempt to
+    When a user does ``from flaskr.ext.foo import bar`` it will attempt to
     import ``from flask_foo import bar`` first and when that fails it will
     try to import ``from flaskext.foo import bar``.
 
     We're switching from namespace packages because it was just too painful for
     everybody involved.
 
-    This is used by `flask.ext`.
+    This is used by `flaskr.ext`.
 
     :copyright: (c) 2015 by Armin Ronacher.
     :license: BSD, see LICENSE for more details.
@@ -57,7 +57,7 @@ class ExtensionImporter(object):
 
     def find_module(self, fullname, path=None):
         if fullname.startswith(self.prefix) and \
-           fullname != 'flask.ext.ExtDeprecationWarning':
+           fullname != 'flaskr.ext.ExtDeprecationWarning':
             return self
 
     def load_module(self, fullname):
@@ -67,7 +67,7 @@ class ExtensionImporter(object):
         modname = fullname.split('.', self.prefix_cutoff)[self.prefix_cutoff]
 
         warnings.warn(
-            "Importing flask.ext.{x} is deprecated, use flask_{x} instead."
+            "Importing flaskr.ext.{x} is deprecated, use flask_{x} instead."
             .format(x=modname), ExtDeprecationWarning
         )
 

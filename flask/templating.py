@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    flask.templating
+    flaskr.templating
     ~~~~~~~~~~~~~~~~
 
     Implements the bridge to Jinja2.

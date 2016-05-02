@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    flask
+    flaskr
     ~~~~~
 
     A microframework based on Werkzeug.  It's extensively documented
@@ -40,7 +40,7 @@ from .signals import signals_available, template_rendered, request_started, \
 # it.
 from . import json
 
-# This was the only thing that flask used to export at one point and it had
+# This was the only thing that flaskr used to export at one point and it had
 # a more generic name.
 jsonify = json.jsonify
 

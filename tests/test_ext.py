@@ -28,7 +28,7 @@ def importhook_setup(monkeypatch, request):
     # import hook does not break on reloading.
     for entry, value in list(sys.modules.items()):
         if (
-            entry.startswith('flask.ext.') or
+            entry.startswith('flaskr.ext.') or
             entry.startswith('flask_') or
             entry.startswith('flaskext.') or
             entry == 'flaskext'
@@ -41,7 +41,7 @@ def importhook_setup(monkeypatch, request):
     import_hooks = 0
     for item in sys.meta_path:
         cls = type(item)
-        if cls.__module__ == 'flask.exthook' and \
+        if cls.__module__ == 'flaskr.exthook' and \
            cls.__name__ == 'ExtensionImporter':
             import_hooks += 1
     assert import_hooks == 1
@@ -88,7 +88,7 @@ def oldext_package(modules_tmpdir):
 def flaskext_broken(modules_tmpdir):
     ext = modules_tmpdir.mkdir('flask_broken')
     ext.join('b.py').write('\n')
-    ext.join('__init__.py').write('import flask.ext.broken.b\n'
+    ext.join('__init__.py').write('import flaskr.ext.broken.b\n'
                                   'import missing_module')
 
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    flask.jsonimpl
+    flaskr.jsonimpl
     ~~~~~~~~~~~~~~
 
     Implementation helpers for the JSON support in Flask.
@@ -87,7 +87,7 @@ class JSONDecoder(_json.JSONDecoder):
     """The default JSON decoder.  This one does not change the behavior from
     the default simplejson decoder.  Consult the :mod:`json` documentation
     for more information.  This decoder is not only used for the load
-    functions of this module but also :attr:`~flask.Request`.
+    functions of this module but also :attr:`~flaskr.Request`.
     """
 
 
@@ -113,7 +113,7 @@ def _load_arg_defaults(kwargs):
 
 def dumps(obj, **kwargs):
     """Serialize ``obj`` to a JSON formatted ``str`` by using the application's
-    configured encoder (:attr:`~flask.Flask.json_encoder`) if there is an
+    configured encoder (:attr:`~flaskr.Flask.json_encoder`) if there is an
     application on the stack.
 
     This function can return ``unicode`` strings or ascii-only bytestrings by
@@ -140,7 +140,7 @@ def dump(obj, fp, **kwargs):
 
 def loads(s, **kwargs):
     """Unserialize a JSON object from a string ``s`` by using the application's
-    configured decoder (:attr:`~flask.Flask.json_decoder`) if there is an
+    configured decoder (:attr:`~flaskr.Flask.json_decoder`) if there is an
     application on the stack.
     """
     _load_arg_defaults(kwargs)
@@ -200,7 +200,7 @@ def htmlsafe_dump(obj, fp, **kwargs):
 
 def jsonify(*args, **kwargs):
     """This function wraps :func:`dumps` to add a few enhancements that make
-    life easier.  It turns the JSON output into a :class:`~flask.Response`
+    life easier.  It turns the JSON output into a :class:`~flaskr.Response`
     object with the :mimetype:`application/json` mimetype.  For convenience, it
     also converts multiple arguments into an array or multiple keyword arguments
     into a dict.  This means that both ``jsonify(1,2,3)`` and
@@ -218,7 +218,7 @@ def jsonify(*args, **kwargs):
 
     Example usage::
 
-        from flask import jsonify
+        from flaskr import jsonify
 
         @app.route('/_get_current_user')
         def get_current_user():

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    flask.logging
+    flaskr.logging
     ~~~~~~~~~~~~~
 
     Implements the logging support for Flask.

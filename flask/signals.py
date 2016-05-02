@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    flask.signals
+    flaskr.signals
     ~~~~~~~~~~~~~
 
     Implements signals based on blinker if available, otherwise
@@ -37,7 +37,7 @@ except ImportError:
             temporarily_connected_to = connected_to = _fail
         del _fail
 
-# The namespace for code signals.  If you are not flask code, do
+# The namespace for code signals.  If you are not flaskr code, do
 # not put signals in here.  Create your own namespace instead.
 _signals = Namespace()
 

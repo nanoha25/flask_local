@@ -3,14 +3,14 @@
     flaskext_compat
     ~~~~~~~~~~~~~~~
 
-    Implements the ``flask.ext`` virtual package for versions of Flask
+    Implements the ``flaskr.ext`` virtual package for versions of Flask
     older than 0.7.  This module is a noop if Flask 0.8 was detected.
 
     Usage::
 
         import flaskext_compat
         flaskext_compat.activate()
-        from flask.ext import foo
+        from flaskr.ext import foo
 
     :copyright: (c) 2015 by Armin Ronacher.
     :license: BSD, see LICENSE for more details.
@@ -118,8 +118,8 @@ class ExtensionImporter(object):
 
 def activate():
     import flask
-    ext_module = types.ModuleType('flask.ext')
+    ext_module = types.ModuleType('flaskr.ext')
     ext_module.__path__ = []
-    flask.ext = sys.modules['flask.ext'] = ext_module
-    importer = ExtensionImporter(['flask_%s', 'flaskext.%s'], 'flask.ext')
+    flask.ext = sys.modules['flaskr.ext'] = ext_module
+    importer = ExtensionImporter(['flask_%s', 'flaskext.%s'], 'flaskr.ext')
     importer.install()

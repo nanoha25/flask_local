@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    flask.debughelpers
+    flaskr.debughelpers
     ~~~~~~~~~~~~~~~~~~
 
     Various helpers to make the development experience better.
@@ -150,6 +150,6 @@ def explain_template_loading_attempts(app, template, attempts):
         info.append('  The template was looked up from an endpoint that '
                     'belongs to the blueprint "%s".' % blueprint)
         info.append('  Maybe you did not place a template in the right folder?')
-        info.append('  See http://flask.pocoo.org/docs/blueprints/#templates')
+        info.append('  See http://flaskr.pocoo.org/docs/blueprints/#templates')
 
     app.logger.info('\n'.join(info))

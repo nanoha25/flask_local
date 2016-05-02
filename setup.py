@@ -49,7 +49,7 @@ from setuptools import setup
 
 _version_re = re.compile(r'__version__\s+=\s+(.*)')
 
-with open('flask/__init__.py', 'rb') as f:
+with open('flaskr/__init__.py', 'rb') as f:
     version = str(ast.literal_eval(_version_re.search(
         f.read().decode('utf-8')).group(1)))
 
@@ -57,14 +57,14 @@ with open('flask/__init__.py', 'rb') as f:
 setup(
     name='Flask',
     version=version,
-    url='http://github.com/pallets/flask/',
+    url='http://github.com/pallets/flaskr/',
     license='BSD',
     author='Armin Ronacher',
     author_email='armin.ronacher@active-4.com',
     description='A microframework based on Werkzeug, Jinja2 '
                 'and good intentions',
     long_description=__doc__,
-    packages=['flask', 'flask.ext'],
+    packages=['flaskr', 'flaskr.ext'],
     include_package_data=True,
     zip_safe=False,
     platforms='any',
@@ -93,6 +93,6 @@ setup(
     ],
     entry_points='''
         [console_scripts]
-        flask=flask.cli:main
+        flaskr=flaskr.cli:main
     '''
 )

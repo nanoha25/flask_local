@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    flask.blueprints
+    flaskr.blueprints
     ~~~~~~~~~~~~~~~~
 
     Blueprints are the recommended way to implement larger or more
@@ -17,7 +17,7 @@ from .helpers import _PackageBoundObject, _endpoint_from_view_func
 class BlueprintSetupState(object):
     """Temporary holder object for registering a blueprint with the
     application.  An instance of this class is created by the
-    :meth:`~flask.Blueprint.make_setup_state` method and later passed
+    :meth:`~flaskr.Blueprint.make_setup_state` method and later passed
     to all register callback functions.
     """
 
@@ -29,7 +29,7 @@ class BlueprintSetupState(object):
         self.blueprint = blueprint
 
         #: a dictionary with all options that were passed to the
-        #: :meth:`~flask.Flask.register_blueprint` method.
+        #: :meth:`~flaskr.Flask.register_blueprint` method.
         self.options = options
 
         #: as blueprints can be registered multiple times with the
@@ -79,7 +79,7 @@ class BlueprintSetupState(object):
 class Blueprint(_PackageBoundObject):
     """Represents a blueprint.  A blueprint is an object that records
     functions that will be called with the
-    :class:`~flask.blueprints.BlueprintSetupState` later to register functions
+    :class:`~flaskr.blueprints.BlueprintSetupState` later to register functions
     or other things on the main application.  See :ref:`blueprints` for more
     information.
 
@@ -130,7 +130,7 @@ class Blueprint(_PackageBoundObject):
         return self.record(update_wrapper(wrapper, func))
 
     def make_setup_state(self, app, options, first_registration=False):
-        """Creates an instance of :meth:`~flask.blueprints.BlueprintSetupState`
+        """Creates an instance of :meth:`~flaskr.blueprints.BlueprintSetupState`
         object that is later passed to the register callback functions.
         Subclasses can override this to return a subclass of the setup state.
         """
@@ -140,7 +140,7 @@ class Blueprint(_PackageBoundObject):
         """Called by :meth:`Flask.register_blueprint` to register a blueprint
         on the application.  This can be overridden to customize the register
         behavior.  Keyword arguments from
-        :func:`~flask.Flask.register_blueprint` are directly forwarded to this
+        :func:`~flaskr.Flask.register_blueprint` are directly forwarded to this
         method in the `options` dictionary.
         """
         self._got_registered_once = True
@@ -392,8 +392,8 @@ class Blueprint(_PackageBoundObject):
         special case is the 500 internal server error which is always looked
         up from the application.
 
-        Otherwise works as the :meth:`~flask.Flask.errorhandler` decorator
-        of the :class:`~flask.Flask` object.
+        Otherwise works as the :meth:`~flaskr.Flask.errorhandler` decorator
+        of the :class:`~flaskr.Flask` object.
         """
         def decorator(f):
             self.record_once(lambda s: s.app._register_error_handler(
@@ -403,8 +403,8 @@ class Blueprint(_PackageBoundObject):
 
     def register_error_handler(self, code_or_exception, f):
         """Non-decorator version of the :meth:`errorhandler` error attach
-        function, akin to the :meth:`~flask.Flask.register_error_handler`
-        application-wide function of the :class:`~flask.Flask` object but
+        function, akin to the :meth:`~flaskr.Flask.register_error_handler`
+        application-wide function of the :class:`~flaskr.Flask` object but
         for error handlers limited to this blueprint.
 
         .. versionadded:: 1.0

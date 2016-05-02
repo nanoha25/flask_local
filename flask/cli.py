@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-    flask.cli
+    flaskr.cli
     ~~~~~~~~~
 
-    A simple command line application to run flask apps.
+    A simple command line application to run flaskr apps.
 
     :copyright: (c) 2015 by Armin Ronacher.
     :license: BSD, see LICENSE for more details.
@@ -99,7 +99,7 @@ def locate_app(app_id):
 
 
 class DispatchingApp(object):
-    """Special application that dispatches to a flask application which
+    """Special application that dispatches to a flaskr application which
     is imported by name in a background thread.  If an error happens
     it is is recorded and shows as part of the WSGI handling which in case
     of the Werkzeug debugger means that it shows up in the browser.
@@ -471,7 +471,7 @@ The most useful commands are the "run" and "shell" command.
 
 Example usage:
 
-  flask --app=hello --debug run
+  flaskr --app=hello --debug run
 """)
 
 
@@ -485,7 +485,7 @@ def main(as_module=False):
         else:
             name = 'python -m ' + this_module
 
-        # This module is always executed as "python -m flask.run" and as such
+        # This module is always executed as "python -m flaskr.run" and as such
         # we need to ensure that we restore the actual command line so that
         # the reloader can properly operate.
         sys.argv = ['-m', this_module] + sys.argv[1:]

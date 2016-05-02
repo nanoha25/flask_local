@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    flask.testing
+    flaskr.testing
     ~~~~~~~~~~~~~
 
     Implements test support helpers.  This module is lazily imported
@@ -62,7 +62,7 @@ class FlaskClient(Client):
         Internally this is implemented by going through a temporary test
         request context and since session handling could depend on
         request variables this function accepts the same arguments as
-        :meth:`~flask.Flask.test_request_context` which are directly
+        :meth:`~flaskr.Flask.test_request_context` which are directly
         passed through.
         """
         if self.cookie_jar is None:
@@ -99,7 +99,7 @@ class FlaskClient(Client):
 
     def open(self, *args, **kwargs):
         kwargs.setdefault('environ_overrides', {}) \
-            ['flask._preserve_context'] = self.preserve_context
+            ['flaskr._preserve_context'] = self.preserve_context
 
         as_tuple = kwargs.pop('as_tuple', False)
         buffered = kwargs.pop('buffered', False)

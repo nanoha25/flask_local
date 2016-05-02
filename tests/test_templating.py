@@ -362,7 +362,7 @@ def test_template_loader_debugging(test_apps):
             assert 'Error: the template could not be found' in text
             assert ('looked up from an endpoint that belongs to '
                     'the blueprint "frontend"') in text
-            assert 'See http://flask.pocoo.org/docs/blueprints/#templates' in text
+            assert 'See http://flaskr.pocoo.org/docs/blueprints/#templates' in text
 
     with app.test_client() as c:
         try:

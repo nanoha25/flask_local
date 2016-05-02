@@ -25,7 +25,7 @@ def test_apps(monkeypatch):
 def leak_detector(request):
     def ensure_clean_request_context():
         # make sure we're not leaking a request context since we are
-        # testing flask internally in debug mode in a few cases
+        # testing flaskr internally in debug mode in a few cases
         leaks = []
         while flask._request_ctx_stack.top is not None:
             leaks.append(flask._request_ctx_stack.pop())

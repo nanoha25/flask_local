@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    flask.helpers
+    flaskr.helpers
     ~~~~~~~~~~~~~
 
     Implements various helpers.
@@ -72,7 +72,7 @@ def stream_with_context(generator_or_function):
 
     This function however can help you keep the context around for longer::
 
-        from flask import stream_with_context, request, Response
+        from flaskr import stream_with_context, request, Response
 
         @app.route('/stream')
         def streamed_response():
@@ -85,7 +85,7 @@ def stream_with_context(generator_or_function):
 
     Alternatively it can also be used around a specific generator::
 
-        from flask import stream_with_context, request, Response
+        from flaskr import stream_with_context, request, Response
 
         @app.route('/stream')
         def streamed_response():
@@ -170,10 +170,10 @@ def make_response(*args):
     Internally this function does the following things:
 
     -   if no arguments are passed, it creates a new response argument
-    -   if one argument is passed, :meth:`flask.Flask.make_response`
+    -   if one argument is passed, :meth:`flaskr.Flask.make_response`
         is invoked with it.
     -   if more than one argument is passed, the arguments are passed
-        to the :meth:`flask.Flask.make_response` function as tuple.
+        to the :meth:`flaskr.Flask.make_response` function as tuple.
 
     .. versionadded:: 0.6
     """
@@ -203,7 +203,7 @@ def url_for(endpoint, **values):
     errors through :attr:`Flask.url_build_error_handlers`.  The `url_for`
     function results in a :exc:`~werkzeug.routing.BuildError` when the current
     app does not have a URL for the given endpoint and values.  When it does, the
-    :data:`~flask.current_app` calls its :attr:`~Flask.url_build_error_handlers` if
+    :data:`~flaskr.current_app` calls its :attr:`~Flask.url_build_error_handlers` if
     it is not ``None``, which can return a string to use as the result of
     `url_for` (instead of `url_for`'s default to raise the
     :exc:`~werkzeug.routing.BuildError` exception) or re-raise the exception.
@@ -466,7 +466,7 @@ def send_file(filename_or_fp, mimetype=None, as_attachment=False,
     :param cache_timeout: the timeout in seconds for the headers. When ``None``
                           (default), this value is set by
                           :meth:`~Flask.get_send_file_max_age` of
-                          :data:`~flask.current_app`.
+                          :data:`~flaskr.current_app`.
     """
     mtime = None
     if isinstance(filename_or_fp, string_types):
@@ -486,7 +486,7 @@ def send_file(filename_or_fp, mimetype=None, as_attachment=False,
                 'attach_filename if you want mimetypes to be guessed.'),
                 stacklevel=2)
         if add_etags:
-            warn(DeprecationWarning('In future flask releases etags will no '
+            warn(DeprecationWarning('In future flaskr releases etags will no '
                 'longer be generated for file objects passed to the send_file '
                 'function because this behavior was unreliable.  Pass '
                 'filenames instead if possible, otherwise attach an etag '
@@ -840,11 +840,11 @@ class _PackageBoundObject(object):
         """Provides default cache_timeout for the :func:`send_file` functions.
 
         By default, this function returns ``SEND_FILE_MAX_AGE_DEFAULT`` from
-        the configuration of :data:`~flask.current_app`.
+        the configuration of :data:`~flaskr.current_app`.
 
         Static file functions such as :func:`send_from_directory` use this
         function, and :func:`send_file` calls this function on
-        :data:`~flask.current_app` when the given cache_timeout is ``None``. If a
+        :data:`~flaskr.current_app` when the given cache_timeout is ``None``. If a
         cache_timeout is given in :func:`send_file`, that timeout is used;
         otherwise, this method is called.
 
@@ -852,11 +852,11 @@ class _PackageBoundObject(object):
         on the filename.  For example, to set the cache timeout for .js files
         to 60 seconds::
 
-            class MyFlask(flask.Flask):
+            class MyFlask(flaskr.Flask):
                 def get_send_file_max_age(self, name):
                     if name.lower().endswith('.js'):
                         return 60
-                    return flask.Flask.get_send_file_max_age(self, name)
+                    return flaskr.Flask.get_send_file_max_age(self, name)
 
         .. versionadded:: 0.9
         """

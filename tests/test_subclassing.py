@@ -3,7 +3,7 @@
     tests.subclassing
     ~~~~~~~~~~~~~~~~~
 
-    Test that certain behavior of flask can be customized by
+    Test that certain behavior of flaskr can be customized by
     subclasses.
 
     :copyright: (c) 2015 by Armin Ronacher.

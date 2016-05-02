@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    flask.app
+    flaskr.app
     ~~~~~~~~~
 
     This module implements the central WSGI application object.
@@ -66,7 +66,7 @@ def setupmethod(f):
 
 
 class Flask(_PackageBoundObject):
-    """The flask object implements a WSGI application and acts as the central
+    """The flaskr object implements a WSGI application and acts as the central
     object.  It is passed the name of the module or package of the
     application.  Once it is created it will act as a central registry for
     the view functions, the URL rules, template configuration and much more.
@@ -81,7 +81,7 @@ class Flask(_PackageBoundObject):
     Usually you create a :class:`Flask` instance in your main module or
     in the :file:`__init__.py` file of your package like this::
 
-        from flask import Flask
+        from flaskr import Flask
         app = Flask(__name__)
 
     .. admonition:: About the First Parameter
@@ -149,12 +149,12 @@ class Flask(_PackageBoundObject):
                       manually defined.
     """
 
-    #: The class that is used for request objects.  See :class:`~flask.Request`
+    #: The class that is used for request objects.  See :class:`~flaskr.Request`
     #: for more information.
     request_class = Request
 
     #: The class that is used for response objects.  See
-    #: :class:`~flask.Response` for more information.
+    #: :class:`~flaskr.Response` for more information.
     response_class = Response
 
     #: The class that is used for the Jinja environment.
@@ -162,18 +162,18 @@ class Flask(_PackageBoundObject):
     #: .. versionadded:: 1.0
     jinja_environment = Environment
 
-    #: The class that is used for the :data:`~flask.g` instance.
+    #: The class that is used for the :data:`~flaskr.g` instance.
     #:
     #: Example use cases for a custom class:
     #:
-    #: 1. Store arbitrary attributes on flask.g.
+    #: 1. Store arbitrary attributes on flaskr.g.
     #: 2. Add a property for lazy per-request database connectors.
     #: 3. Return None instead of AttributeError on unexpected attributes.
-    #: 4. Raise exception if an unexpected attr is set, a "controlled" flask.g.
+    #: 4. Raise exception if an unexpected attr is set, a "controlled" flaskr.g.
     #:
     #: In Flask 0.9 this property was called `request_globals_class` but it
     #: was changed in 0.10 to :attr:`app_ctx_globals_class` because the
-    #: flask.g object is now application context scoped.
+    #: flaskr.g object is now application context scoped.
     #:
     #: .. versionadded:: 0.10
     app_ctx_globals_class = _AppCtxGlobals
@@ -191,7 +191,7 @@ class Flask(_PackageBoundObject):
     del _get_request_globals_class, _set_request_globals_class
 
     #: The class that is used for the ``config`` attribute of this app.
-    #: Defaults to :class:`~flask.Config`.
+    #: Defaults to :class:`~flaskr.Config`.
     #:
     #: Example use cases for a custom class:
     #:
@@ -272,12 +272,12 @@ class Flask(_PackageBoundObject):
     #: .. versionadded:: 0.4
     logger_name = ConfigAttribute('LOGGER_NAME')
 
-    #: The JSON encoder class to use.  Defaults to :class:`~flask.json.JSONEncoder`.
+    #: The JSON encoder class to use.  Defaults to :class:`~flaskr.json.JSONEncoder`.
     #:
     #: .. versionadded:: 0.10
     json_encoder = json.JSONEncoder
 
-    #: The JSON decoder class to use.  Defaults to :class:`~flask.json.JSONDecoder`.
+    #: The JSON decoder class to use.  Defaults to :class:`~flaskr.json.JSONDecoder`.
     #:
     #: .. versionadded:: 0.10
     json_decoder = json.JSONDecoder
@@ -331,7 +331,7 @@ class Flask(_PackageBoundObject):
     test_client_class = None
 
     #: the session interface to use.  By default an instance of
-    #: :class:`~flask.sessions.SecureCookieSessionInterface` is used here.
+    #: :class:`~flaskr.sessions.SecureCookieSessionInterface` is used here.
     #:
     #: .. versionadded:: 0.8
     session_interface = SecureCookieSessionInterface()
@@ -541,7 +541,7 @@ class Flask(_PackageBoundObject):
                               view_func=self.send_static_file)
 
         #: The click command line context for this application.  Commands
-        #: registered here show up in the :command:`flask` command once the
+        #: registered here show up in the :command:`flaskr` command once the
         #: application has been discovered.  The default commands are
         #: provided by Flask itself and can be overridden.
         #:
@@ -796,7 +796,7 @@ class Flask(_PackageBoundObject):
 
         It is not recommended to use this function for development with
         automatic reloading as this is badly supported.  Instead you should
-        be using the :command:`flask` command line script's ``run`` support.
+        be using the :command:`flaskr` command line script's ``run`` support.
 
         .. admonition:: Keep in Mind
 
@@ -873,7 +873,7 @@ class Flask(_PackageBoundObject):
         be passed to the application's :attr:`test_client_class` constructor.
         For example::
 
-            from flask.testing import FlaskClient
+            from flaskr.testing import FlaskClient
 
             class CustomClient(FlaskClient):
                 def __init__(self, authentication=None, *args, **kwargs):
@@ -883,7 +883,7 @@ class Flask(_PackageBoundObject):
             app.test_client_class = CustomClient
             client = app.test_client(authentication='Basic ....')
 
-        See :class:`~flask.testing.FlaskClient` for more information.
+        See :class:`~flaskr.testing.FlaskClient` for more information.
 
         .. versionchanged:: 0.4
            added support for ``with`` block usage for the client.
@@ -1884,7 +1884,7 @@ class Flask(_PackageBoundObject):
 
     def app_context(self):
         """Binds the application only.  For as long as the application is bound
-        to the current context the :data:`flask.current_app` points to that
+        to the current context the :data:`flaskr.current_app` points to that
         application.  An application context is automatically created when a
         request context is pushed if necessary.
 
@@ -1898,7 +1898,7 @@ class Flask(_PackageBoundObject):
         return AppContext(self)
 
     def request_context(self, environ):
-        """Creates a :class:`~flask.ctx.RequestContext` from the given
+        """Creates a :class:`~flaskr.ctx.RequestContext` from the given
         environment and binds it to the current context.  This must be used in
         combination with the ``with`` statement because the request is only bound
         to the current context for the duration of the ``with`` block.

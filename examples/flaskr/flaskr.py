@@ -14,7 +14,7 @@ import os
 from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
-#newly added import from here through flask tutorial
+#newly added import from here through flaskr tutorial
 from contextlib import contextmanager
 from flask import appcontext_pushed
 from flask import json, jsonify
@@ -50,7 +50,7 @@ def init_db():
     db.commit()
 
 
-@app.cli.command('initdb')
+#@app.cli.command('initdb')
 def initdb_command():
     """Creates the database tables."""
     init_db()
@@ -114,7 +114,7 @@ def logout():
     flash('You were logged out')
     return redirect(url_for('show_entries'))
 
-#newly added code from here through flask tutorial.
+#newly added code from here through flaskr tutorial.
 '''
 def get_user():
     user = getattr(g, 'user', None)
@@ -142,7 +142,7 @@ with user_set(app, my_user):
 
 with app.test_client() as c:
     rv = c.get('/')
-    assert flask.session['foo'] == 42
+    assert flaskr.session['foo'] == 42
 
 with app.test_client() as c:
     with c.session_transaction() as sess:

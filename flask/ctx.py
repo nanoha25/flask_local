@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    flask.ctx
+    flaskr.ctx
     ~~~~~~~~~
 
     Implements the objects required to keep the context.
@@ -47,7 +47,7 @@ class _AppCtxGlobals(object):
     def __repr__(self):
         top = _app_ctx_stack.top
         if top is not None:
-            return '<flask.g of %r>' % top.app.name
+            return '<flaskr.g of %r>' % top.app.name
         return object.__repr__(self)
 
 
@@ -85,13 +85,13 @@ def copy_current_request_context(f):
     Example::
 
         import gevent
-        from flask import copy_current_request_context
+        from flaskr import copy_current_request_context
 
         @app.route('/')
         def index():
             @copy_current_request_context
             def do_some_work():
-                # do some work here, it can access flask.request like you
+                # do some work here, it can access flaskr.request like you
                 # would otherwise in the view function.
                 ...
             gevent.spawn(do_some_work)
@@ -209,21 +209,21 @@ class RequestContext(object):
     URL adapter and request object for the WSGI environment provided.
 
     Do not attempt to use this class directly, instead use
-    :meth:`~flask.Flask.test_request_context` and
-    :meth:`~flask.Flask.request_context` to create this object.
+    :meth:`~flaskr.Flask.test_request_context` and
+    :meth:`~flaskr.Flask.request_context` to create this object.
 
     When the request context is popped, it will evaluate all the
     functions registered on the application for teardown execution
-    (:meth:`~flask.Flask.teardown_request`).
+    (:meth:`~flaskr.Flask.teardown_request`).
 
     The request context is automatically popped at the end of the request
     for you.  In debug mode the request context is kept around if
     exceptions happen so that interactive debuggers have a chance to
     introspect the data.  With 0.4 this can also be forced for requests
     that did not fail and outside of ``DEBUG`` mode.  By setting
-    ``'flask._preserve_context'`` to ``True`` on the WSGI environment the
+    ``'flaskr._preserve_context'`` to ``True`` on the WSGI environment the
     context will not pop itself at the end of the request.  This is used by
-    the :meth:`~flask.Flask.test_client` for example to implement the
+    the :meth:`~flaskr.Flask.test_client` for example to implement the
     deferred cleanup functionality.
 
     You might find this helpful for unittests where you need the
@@ -334,7 +334,7 @@ class RequestContext(object):
     def pop(self, exc=_sentinel):
         """Pops the request context and unbinds it by doing that.  This will
         also trigger the execution of functions registered by the
-        :meth:`~flask.Flask.teardown_request` decorator.
+        :meth:`~flaskr.Flask.teardown_request` decorator.
 
         .. versionchanged:: 0.9
            Added the `exc` argument.
@@ -375,7 +375,7 @@ class RequestContext(object):
             app_ctx.pop(exc)
 
     def auto_pop(self, exc):
-        if self.request.environ.get('flask._preserve_context') or \
+        if self.request.environ.get('flaskr._preserve_context') or \
            (exc is not None and self.app.preserve_context_on_exception):
             self.preserved = True
             self._preserved_exc = exc
@@ -391,7 +391,7 @@ class RequestContext(object):
         # exception happened.  This will allow the debugger to still
         # access the request object in the interactive shell.  Furthermore
         # the context can be force kept alive for the test client.
-        # See flask.testing for how this works.
+        # See flaskr.testing for how this works.
         self.auto_pop(exc_value)
 
         if BROKEN_PYPY_CTXMGR_EXIT and exc_type is not None:

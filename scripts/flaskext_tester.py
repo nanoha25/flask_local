@@ -22,7 +22,7 @@ from flask import json
 from setuptools.package_index import PackageIndex
 from setuptools.archive_util import unpack_archive
 
-flask_svc_url = 'http://flask.pocoo.org/extensions/'
+flask_svc_url = 'http://flaskr.pocoo.org/extensions/'
 
 
 # OS X has awful paths when using mkstemp or gettempdir().  I don't
@@ -156,7 +156,7 @@ def create_tdir():
 
 
 def package_flask():
-    distfolder = tdir + '/.flask-dist'
+    distfolder = tdir + '/.flaskr-dist'
     c = subprocess.Popen(['python', 'setup.py', 'sdist', '--formats=gztar',
                           '--dist', distfolder], cwd=flaskdir)
     c.wait()
@@ -207,7 +207,7 @@ downloadcache=%(cache)s
 
 
 def create_tox_ini(checkout_path, interpreters, flask_dep):
-    tox_path = os.path.join(checkout_path, 'tox-flask-test.ini')
+    tox_path = os.path.join(checkout_path, 'tox-flaskr-test.ini')
     if not os.path.exists(tox_path):
         with open(tox_path, 'w') as f:
             f.write(tox_template % {
@@ -245,7 +245,7 @@ def test_extension(name, interpreters, flask_dep):
     # afterall.
 
     create_tox_ini(checkout_path, interpreters, flask_dep)
-    rv = subprocess.call(['tox', '-c', 'tox-flask-test.ini'], cwd=checkout_path)
+    rv = subprocess.call(['tox', '-c', 'tox-flaskr-test.ini'], cwd=checkout_path)
     return TestResult(name, checkout_path, rv, interpreters)
 
 
